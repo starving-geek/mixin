@@ -1,0 +1,64 @@
+
+body{
+	background-attachment: fixed;
+	text-align: left;
+}
+
+
+#lblQuestion {
+	font-size: 24px;
+}
+
+.btn {
+	margin-top: 12px;
+}
+
+#txtAnswer {
+	font-size: 24px;
+	display: none;
+}
+
+#txtFeedback {
+	font-size: 24px;
+}
+
+#historyText {
+	display: none;
+}
+
+#btnNextQuestion {
+	display: none;
+}
+
+#btnSubmit {
+	display: none;
+}
+
+#questionType {
+	display: none;
+}
+
+.answerBlock{
+	width:30px;
+	height:30px;
+	border: 1px inset black;
+	display: inline-block;
+	margin-right: 2px;
+}
+
+.noAnswer{
+	background:white;
+}
+
+.rightAnswer{
+    background:green;
+}
+
+.wrongAnswer{
+    background:red;
+}
+
+pre {
+	font-size: 14px;
+}
+
