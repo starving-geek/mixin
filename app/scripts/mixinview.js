@@ -1,10 +1,10 @@
 /*
  * Tyler Deans
- * March 17, 2016
+ * April 16, 2016
  */
 
 
-function MapView(_simView) {
+function MixinView(_simView) {
     // keep a link to the view
     this.simView = _simView;
 }
@@ -14,7 +14,7 @@ function MapView(_simView) {
 	draws expressions for the option view
 */
 
-MapView.prototype.drawMapExpression = function(_map) {
+MixinView.prototype.drawmixinExpression = function(_mixin) {
 
-    $('#mapDiv').append(_map.mapExpressionString);
+    $('#mixinDiv').append(_mixin.mixinExpressionString);
 }

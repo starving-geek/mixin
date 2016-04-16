@@ -2,7 +2,7 @@
  * main.js
  * Rich Simpson
  * Tyler Deans
- * March 12, 2016
+ * April 16, 2016
  * This code implements a mastery-based exercise on graph
  * theory for integration with Smart Sparrow.
  *
