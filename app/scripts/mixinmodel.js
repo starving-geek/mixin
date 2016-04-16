@@ -11,8 +11,14 @@ function MixinModel(_simModel) {
 }
 
 function getQuestionType() {
-    var randNum = getRandomInt(1, 5); // random number between 1 and 4
-
+    var randNum = getRandomInt(1, 4); // random number between 1 and 3
+    if (randNum == 1) {
+        return "color";
+    } else if (randNum == 2) {
+        return "darken";
+    } else {
+        return "distance";
+    }
 }
 
 function getColor() {
@@ -25,7 +31,7 @@ function getModuleString() {
     var module = "module Color\n";
     module += "  attr_accessor :color\n";
     module += "  def darken\n";
-    module += "    self.color = "dark " + self.color\n";
+    module += '    self.color = \"dark\" + self.color\n';
     module += "  end\n";
     module += "  def distFromOrigin\n";
     module += "    Math.sqrt(x * x + y * y)\n";
@@ -52,11 +58,19 @@ function getClassString() {
 MixinModel.prototype.evalMixinExpression = function() {
     var xPoint = getRandomInt(1, 5);
     var yPoint = getRandomInt(1, 5);
+    var questionType = getQuestionType();
 
     this.mixinExpressionString = "<pre>" + getModuleString() + "\n";
     this.mixinExpressionString += getClassString() + "\n";
     this.mixinExpressionString += "p = Point.new(" + xPoint + ", " + yPoint + ")\n";
 
+    if (questionType == "color") {
+
+    } else if (questionType == "darken") {
+
+    } else {
+
+    }
 }
 
 
