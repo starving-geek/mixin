@@ -41,7 +41,16 @@ function getModuleString() {
 }
 
 function getClassString() {
-    var classStr = "";
+    var classStr = "class Point\n";
+    classStr += "  include Color\n";
+    classStr += "  attr_accessor :x, :y\n";
+    classStr += "  def initialize(x,y)\n";
+    classStr += "    @x = x\n";
+    classStr += "    @y = y\n";
+    classStr += "  end\n";
+    classStr += "end\n";
+
+    return classStr;
 }
 
 
