@@ -13,15 +13,16 @@
  * I use in this program.
  */
 
-/*
- * Tyler Deans
- * April 16, 2016
- */
+
 var randNum;
 function emptyOutArray(myArray) {
     myArray.length = 0;
 }
-
+/*
+ * Tyler Deans
+ * April 16, 2016
+ * added getRandomInt function
+ */
 
 // Returns a random integer between min (included) and max (excluded)
 // Using Math.round() will give you a non-uniform distribution!
@@ -75,7 +76,7 @@ SimModel.prototype = new pipit.CapiAdapter.CapiModel;
 
 
 SimModel.prototype.initializeModel = function() {
-    this.mapExpression = new MapModel(this);
+    this.mixinExpression = new MixinModel(this);
     // the question bank stores the questions, the answers and the student's
     // answer history
     this.questionBank = new QuestionBankModel(this, this.get('numerator'),
