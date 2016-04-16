@@ -55,14 +55,18 @@ function getClassString() {
 
 
 MixinModel.prototype.evalMixinExpression = function() {
+    var xPoint = getRandomInt(1, 5);
+    var yPoint = getRandomInt(1, 5);
+
     this.mixinExpressionString = "<pre>" + getModuleString() + "\n";
     this.mixinExpressionString += getClassString() + "\n";
+    this.mixinExpressionString += "p = Point.new(" + xPoint + ", " + yPoint + ")\n";
 
 }
 
 
 MixinModel.prototype.getMixinExpression = function() {
-        return this.mixinExpressionString;
+    return this.mixinExpressionString;
 }
 
 
