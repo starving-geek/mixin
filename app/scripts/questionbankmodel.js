@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * March 17, 2016
+ * April 16, 2016
  * questionbankmodel.js
  */
 
@@ -71,11 +71,7 @@ QuestionBankModel.prototype.masteryAchieved = function() {
 
 
 QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
-  var correctAnswer = false;
-  for (var i = 0; i < this.answers.length; i++) {
 
-  }
-  return correctAnswer;
 }
 
 
@@ -86,11 +82,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
   // Each question template is an array holding either strings
   // or executable commands stored as strings.
   this.questions = [
-    ["Given the ML code above, what is ans bound to?"],
-    ["Given the ML code above, what is ans bound to?"],
-    ["Given the ML code above, what is ans bound to?"],
-    ["Given the ML code above, what is ans bound to?"],
-    ["Given the ML code above, what is ans bound to?"]
+    [""],
+    [""],
+    [""],
+    [""],
+    [""]
   ];
   // the question index is used to rotate through the questions
   this.questionIndex = 0;
@@ -127,24 +123,24 @@ QuestionBankModel.prototype.chooseQuestion = function(_firstQuestion, _lastQuest
  * Right now I'm using a really clunky approach. I'm sure there's
  * a better way.
  */
-QuestionBankModel.prototype.setAnswers = function(_map) {
+QuestionBankModel.prototype.setAnswers = function(_mixin) {
   // Reset answers array
   this.answers = [];
   // Adds the answers to the question to the answers array
   // Set the answer(s) to the question indicated by questionIndex.
 
   if (this.questionIndex == 0) {
-    this.answers.push(_map.evalMapExpression());
+    this.answers = _mixin.evalMixinExpression();
 
   } else if (this.questionIndex == 1) {
-    this.answers.push(_map.evalMapExpression());
+    this.answers = _mixin.evalMixinExpression();
 
   } else if (this.questionIndex == 2) {
-    this.answers.push(_map.evalMapExpression());
+    this.answers = _mixin.evalMixinExpression();
 
   } else if (this.questionIndex == 3) {
-    this.answers.push(_map.evalMapExpression());
+    this.answers = _mixin.evalMixinExpression();
   } else {
-    this.answers.push(_map.evalMapExpression());
+    this.answers = _mixin.evalMixinExpression();
   }
 }

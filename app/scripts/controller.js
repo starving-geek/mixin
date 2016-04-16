@@ -1,6 +1,6 @@
-a /* Rich Simpson
+ /* Rich Simpson
   * Tyler Deans
-  * March 18, 2016
+  * April 16, 2016
   * controller.js
   */
 

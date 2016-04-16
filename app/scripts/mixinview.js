@@ -11,7 +11,7 @@ function MixinView(_simView) {
 
 
 /*
-	draws expressions for the option view
+	draws expressions for the mixin view
 */
 
 MixinView.prototype.drawMixinExpression = function(_mixin) {
