@@ -15,8 +15,9 @@
 
 /*
  * Tyler Deans
- * March 17, 2016
+ * April 16, 2016
  */
+var randNum;
 function emptyOutArray(myArray) {
     myArray.length = 0;
 }
@@ -26,7 +27,17 @@ function emptyOutArray(myArray) {
 // Using Math.round() will give you a non-uniform distribution!
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+    if (randNum == null) {
+       return Math.floor(Math.random() * (max - min)) + min;
+    } else{
+        number = Math.floor(Math.random() * (max - min)) + min;
+        while(randNum === number) {
+            number = Math.floor(Math.random() * (max - min)) + min;
+        }
+        randNum = number;
+        return number;
+    }
+
 }
 
 

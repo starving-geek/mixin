@@ -56,6 +56,7 @@ function getClassString() {
 
 MixinModel.prototype.evalMixinExpression = function() {
     this.mixinExpressionString = "<pre>" + getModuleString() + "\n";
+    this.mixinExpressionString += getClassString() + "\n";
 
 }
 
