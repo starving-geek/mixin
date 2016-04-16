@@ -26,9 +26,27 @@ function getQuestionType() {
     return type;
 }
 
+function getModuleString() {
+    var module = "module Color\n";
+    module += "  attr_accessor :color\n";
+    module += "  def darken\n";
+    module += "    self.color = "dark " + self.color\n";
+    module += "  end\n";
+    module += "  def distFromOrigin\n";
+    module += "    Math.sqrt(x * x + y * y)\n";
+    module += "  end\n";
+    module += "end\n";
+
+    return module;
+}
+
+function getClassString() {
+    var classStr = "";
+}
+
 
 MixinModel.prototype.evalMixinExpression = function() {
-    this.mixinExpressionString = "<pre>" + "\n";
+    this.mixinExpressionString = "<pre>" + getModuleString() + "\n";
 
 }
 
