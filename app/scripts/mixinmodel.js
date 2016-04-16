@@ -12,18 +12,13 @@ function MixinModel(_simModel) {
 
 function getQuestionType() {
     var randNum = getRandomInt(1, 5); // random number between 1 and 4
-    var type = "";
-    if (randNum === 1) {
-        type = "arithmetic";
-    } else if (randNum === 2) {
-        type = "string";
-    } else if (randNum === 3) {
-        type = "head";
-    } else {
-        type = "null";
-    }
 
-    return type;
+}
+
+function getColor() {
+    var colors = ['blue', 'red', 'yellow', 'green', 'black', 'brown', 'white'];
+    var index = getRandomInt(0, colors.length);
+    return colors[index];
 }
 
 function getModuleString() {
