@@ -3,19 +3,19 @@
  * April 16, 2016
  */
 
-
-
 function MixinModel(_simModel) {
     // save a link to the model
     this.simModel = _simModel;
 }
 
 function getQuestionType() {
-    var randNum = getRandomInt(1, 4); // random number between 1 and 3
+    var randNum = getRandomInt(1, 5); // random number between 1 and 4
     if (randNum == 1) {
         return "color";
     } else if (randNum == 2) {
         return "darken";
+    } else if (randNum == 3) {
+        return "dark color";
     } else {
         return "distance";
     }
@@ -65,11 +65,20 @@ MixinModel.prototype.evalMixinExpression = function() {
     this.mixinExpressionString += "p = Point.new(" + xPoint + ", " + yPoint + ")\n";
 
     if (questionType == "color") {
+        var color = getColor();
+        this.mixinExpressionString += "What Ruby command would set the color of p to " + color + "\n</pre>";
 
     } else if (questionType == "darken") {
+        this.mixinExpressionString += 'What Ruby command would call the \"darken\" function on p?</pre>';
+
+    } else if (questionType == "dark color") {
+        this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
+        this.mixinExpressionString += "p.color = 'red'\n";
+        this.mixinExpressionString += "ans = p.darken()</pre>";
 
     } else {
-
+        this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
+        this.mixinExpressionString += "ans = p.distFromOrigin()</pre>";
     }
 }
 
@@ -77,5 +86,4 @@ MixinModel.prototype.evalMixinExpression = function() {
 MixinModel.prototype.getMixinExpression = function() {
     return this.mixinExpressionString;
 }
-
 
