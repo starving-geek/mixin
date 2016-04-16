@@ -55,15 +55,15 @@ a /* Rich Simpson
 
 
  SimController.prototype.setupDisplay = function() {
-   this.simModel.mapExpression.evalMapExpression();
+   this.simModel.mixinExpression.evalMixinExpression();
    // choose a question randomly
    var question = this.simModel.questionBank.chooseQuestion(this.getModelValue('firstQuestion'), this.getModelValue('lastQuestion'));
    // store the answer(s) to the question we chose in the last step
-   this.simModel.questionBank.setAnswers(this.simModel.mapExpression);
+   this.simModel.questionBank.setAnswers(this.simModel.mixinExpression);
    // draw the results for the last five questions
    this.simView.questionBankView.drawAnswerHistory(this.simModel.questionBank.answerHistory);
    // draw the expressions on the screen
-   this.simView.mixinView.drawMapExpression(this.simModel.mapExpression);
+   this.simView.mixinView.drawMixinExpression(this.simModel.mixinExpression);
    // display the next question
    this.simView.questionBankView.presentQuestion(question);
  }

@@ -14,7 +14,7 @@ function MixinView(_simView) {
 	draws expressions for the option view
 */
 
-MixinView.prototype.drawmixinExpression = function(_mixin) {
+MixinView.prototype.drawMixinExpression = function(_mixin) {
 
     $('#mixinDiv').append(_mixin.mixinExpressionString);
 }
