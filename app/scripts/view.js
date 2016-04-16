@@ -24,7 +24,7 @@ function SimView(_controller) {
   // displayed
   this.questionBankView = new QuestionBankView(this);
   // creates the map view
-  this.mapView = new MapView(this);
+  this.mixinView = new MixinView(this);
 }
 
 
@@ -102,7 +102,7 @@ SimView.prototype.setupControls = function() {
     // clear the feedback from the last question
     $("#txtFeedback").html('');
     // clear the fringe
-    $("#mapDiv").html('');
+    $("#mixinDiv").html('');
     // pass off to the controller to create and display a
     // new let expression and new question
     simController.setupDisplay();
