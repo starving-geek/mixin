@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 16, 2016
+ * April 21, 2016
  */
 
 function MixinModel(_simModel) {
@@ -22,7 +22,7 @@ function getQuestionType() {
 }
 
 function getColor() {
-    var colors = ['blue', 'red', 'yellow', 'green', 'black', 'brown', 'white'];
+    var colors = ['blue', 'red', 'yellow', 'green'];
     var index = getRandomInt(0, colors.length);
     return colors[index];
 }
@@ -55,21 +55,21 @@ function getClassString() {
 }
 
 function getDarkenAnswer() {
-
+    return "p.darken()";
 }
 
-function getColorAnswer() {
-
+function getColorAnswer(color) {
+    return 'p.color = "' + color + '"';
 }
-function getDistanceAnswer() {
-
-}
-
-function getDarkenEvalAnswer() {
-
+function getDistanceAnswer(x, y) {
+    return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 }
 
-function
+function getDarkenEvalAnswer(color) {
+    return "dark " + color;
+}
+
+
 MixinModel.prototype.evalMixinExpression = function() {
     var xPoint = getRandomInt(1, 5);
     var yPoint = getRandomInt(1, 5);
@@ -82,18 +82,23 @@ MixinModel.prototype.evalMixinExpression = function() {
     if (questionType == "color") {
         var color = getColor();
         this.mixinExpressionString += "What Ruby command would set the color of p to " + color + "\n</pre>";
+        return getColorAnswer(color);
 
     } else if (questionType == "darken") {
         this.mixinExpressionString += 'What Ruby command would call the \"darken\" function on p?</pre>';
+        return getDarkenAnswer();
 
     } else if (questionType == "dark color") {
+        var color = getColor();
         this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
-        this.mixinExpressionString += "p.color = 'red'\n";
+        this.mixinExpressionString += "p.color = '" + color + "'\n";
         this.mixinExpressionString += "ans = p.darken()</pre>";
+        return getDarkenEvalAnswer(color);
 
     } else {
         this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
         this.mixinExpressionString += "ans = p.distFromOrigin()</pre>";
+        return getDistanceAnswer(xPoint, yPoint);
     }
 }
 

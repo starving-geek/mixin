@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 16, 2016
+ * April 21, 2016
  * questionbankmodel.js
  */
 
@@ -82,11 +82,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
   // Each question template is an array holding either strings
   // or executable commands stored as strings.
   this.questions = [
-    ["If the answer is a string use double quotes."],
-    ["If the answer is a string use double quotes."],
-    ["If the answer is a string use double quotes."],
-    ["If the answer is a string use double quotes."],
-    ["If the answer is a string use double quotes."]
+    ["Please indicate strings using double or single quotes."],
+    ["Please indicate strings using double or single quotes."],
+    ["Please indicate strings using double or single quotes."],
+    ["Please indicate strings using double or single quotes."],
+    ["Please indicate strings using double or single quotes."]
   ];
   // the question index is used to rotate through the questions
   this.questionIndex = 0;
