@@ -82,11 +82,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
   // Each question template is an array holding either strings
   // or executable commands stored as strings.
   this.questions = [
-    [""],
-    [""],
-    [""],
-    [""],
-    [""]
+    ["If the answer is a string use double quotes."],
+    ["If the answer is a string use double quotes."],
+    ["If the answer is a string use double quotes."],
+    ["If the answer is a string use double quotes."],
+    ["If the answer is a string use double quotes."]
   ];
   // the question index is used to rotate through the questions
   this.questionIndex = 0;

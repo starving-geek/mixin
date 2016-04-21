@@ -54,7 +54,22 @@ function getClassString() {
     return classStr;
 }
 
+function getDarkenAnswer() {
 
+}
+
+function getColorAnswer() {
+
+}
+function getDistanceAnswer() {
+
+}
+
+function getDarkenEvalAnswer() {
+
+}
+
+function
 MixinModel.prototype.evalMixinExpression = function() {
     var xPoint = getRandomInt(1, 5);
     var yPoint = getRandomInt(1, 5);
