@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 21, 2016
+ * April 24, 2016
  */
 
 function MixinModel(_simModel) {
@@ -81,7 +81,7 @@ MixinModel.prototype.evalMixinExpression = function() {
 
     if (questionType == "color") {
         var color = getColor();
-        this.mixinExpressionString += "What Ruby command would set the color of p to " + color + "\n</pre>";
+        this.mixinExpressionString += "What Ruby command would set the color of p to " + color + "?\n</pre>";
         return getColorAnswer(color);
 
     } else if (questionType == "darken") {
