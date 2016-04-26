@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 25, 2016
+ * April 26, 2016
  * questionbankmodel.js
  */
 
@@ -74,7 +74,7 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
     if (studentAnswer === "") {
         return false;
     } else if (studentAnswer.match(/^[0-9]+$/) != null) { // distance from origin question
-        if (studentAnswer === this.answers.toString()) {
+        if (studentAnswer === Math.round(this.answers).toString()) {
             return true;
         }
     } else if (studentAnswer.indexOf("dark") > -1) { // darken question answer: dark (color)
@@ -96,26 +96,27 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
 
         }
     } else if ( (studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('color') > -1) )  { // color question
-        if (studentAnswer.indexOf("'")) {
-            var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
-            if (studentAnswerSanQuote === this.answers) {
+        if (studentAnswer.indexOf("'") > -1) { // if the student's answer contains single quotes
+            var studentAnswerDoubleQuote = studentAnswer.replace(/['"]+/g, '"'); // replace single quotes with double quotes
+            if (studentAnswerDoubleQuote === this.answers) {
                 return true;
             }
         } else {
             var studentAnswerSanQuote = studentAnswer.replace(/["']+/g, '');
-            if (studentAnswerSanQuote === this.answers) {
+            if (studentAnswer === this.answers) {
                 return true;
             }
         }
 
     } else if ( (studentAnswer.indexOf('p')) && (studentAnswer.indexOf('darken') > -1) ) { // other darken question answer: p.darken() or p.darken
-        if (studentAnswer.indexOf("()") > -1) { // checks if the student used parenthesis
+        if (studentAnswer.indexOf("(") > -1 && studentAnswer.indexOf(")") > -1) { // checks if the student used parenthesis
             if (studentAnswer === this.answers) {
                 return true;
             }
 
         } else { // no parenthesis
-           if (studentAnswer === this.answers) {
+            answerSansPar = this.answers.replace("()", ''); // remove parenthesis
+            if (studentAnswer === answerSansPar) {
                 return true;
             }
         }
@@ -133,11 +134,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
     // Each question template is an array holding either strings
     // or executable commands stored as strings.
     this.questions = [
-        ["Please indicate strings using double or single quotes."],
-        ["Please indicate strings using double or single quotes."],
-        ["Please indicate strings using double or single quotes."],
-        ["Please indicate strings using double or single quotes."],
-        ["Please indicate strings using double or single quotes."]
+        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
+        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
+        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
+        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
+        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."]
     ];
     // the question index is used to rotate through the questions
     this.questionIndex = 0;

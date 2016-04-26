@@ -28,9 +28,11 @@ function emptyOutArray(myArray) {
 // Using Math.round() will give you a non-uniform distribution!
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(min, max) {
+    var number;
     if (randNum == null) {
-       return Math.floor(Math.random() * (max - min)) + min;
-    } else{
+       number = Math.floor(Math.random() * (max - min)) + min;
+       return number;
+    } else if (randNum === number) {
         number = Math.floor(Math.random() * (max - min)) + min;
         while(randNum === number) {
             number = Math.floor(Math.random() * (max - min)) + min;
