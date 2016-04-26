@@ -64,13 +64,16 @@ SimView.prototype.setupControls = function() {
             // give them feedback
             var correctAnswer = simController.simModel.questionBank.answers;
             var feedbackStr = '';
-            //debugger;
+
             if (typeof correctAnswer === 'number') {
                 feedbackStr += "That is incorrect. The correct answer is " + correctAnswer;
 
             } else if (typeof correctAnswer === "string"){ // if correctAnswer is a string
                 if (correctAnswer.indexOf('dark') > -1 && correctAnswer.indexOf('.') == -1) { // dark color answer
-                    feedbackStr += "That is incorrect. The correct answer is '" + correctAnswer + "' or \"" + correctAnswer + '\"'
+                    feedbackStr += "That is incorrect. The correct answer is '" + correctAnswer + "' or \"" + correctAnswer + '\"';
+
+                } else if (correctAnswer.indexOf("()") > -1) {
+                    feedbackStr += "That is incorrect. The correct answer is " + correctAnswer + ' or ' + correctAnswer.replace('()', '');
                 } else {
                     feedbackStr += "That is incorrect. The correct answer is " + correctAnswer;
                 }

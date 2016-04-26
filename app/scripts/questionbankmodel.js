@@ -68,14 +68,30 @@ QuestionBankModel.prototype.masteryAchieved = function() {
     return count >= this.numerator;
 }
 
+function isNoSpaceEqualSign(studentAnswer) {
+    if (studentAnswer.indexOf(' =') == -1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+// this method assumes that this.answers contains a space before the equals sign
+// this mehtod removes the space
+// this is necessary when the user enters a ruby statement where a variable is assigned a value
+// in ruby the equals sign does not have to have a preceding space
+function removeSpace(answer) {
+    return answer.replace(' =', '=');
+}
 
 QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
     if (studentAnswer === "") {
         return false;
-    } else if (studentAnswer.match(/^[0-9]+$/) != null) { // distance from origin question
+    } else if (studentAnswer.match(/^[0-9]+$/) != null) { // add up question
         if (studentAnswer === this.answers.toString()) {
             return true;
+        } else {
+            return false;
         }
     } else if (studentAnswer.indexOf("dark") > -1 && studentAnswer.indexOf('.') == -1) { // darken question answer: dark (color)
         // checks if the answer is in double or single quotes
@@ -85,26 +101,54 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
                 var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
                 if (studentAnswerSanQuote === this.answers) {
                     return true;
+                } else {
+                    return false;
                 }
              // if the student uses double quotes
             } else {
                 var studentAnswerSanQuote = studentAnswer.replace(/["']+/g, '');
                 if (studentAnswerSanQuote === this.answers) {
                     return true;
+                } else {
+                    return false;
                 }
             }
 
         }
     } else if ( (studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('color') > -1) )  { // color question
+        //debugger;
         if (studentAnswer.indexOf("'") > -1) { // if the student's answer contains single quotes
-            var studentAnswerDoubleQuote = studentAnswer.replace(/['"]+/g, '"'); // replace single quotes with double quotes
-            if (studentAnswerDoubleQuote === this.answers) {
-                return true;
+            if (isNoSpaceEqualSign(studentAnswer)) {
+                var answerNoSpace = removeSpace(this.answers);
+                var studentAnswerDoubleQuote = studentAnswer.replace(/['"]+/g, '"');
+                if (answerNoSpace === studentAnswerDoubleQuote) {
+                    return true;
+                } else{
+                    return false;
+                }
+            } else {
+                var studentAnswerDoubleQuote = studentAnswer.replace(/['"]+/g, '"'); // replace single quotes with double quotes
+                if (studentAnswerDoubleQuote === this.answers) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        } else {
-            var studentAnswerSanQuote = studentAnswer.replace(/["']+/g, '');
-            if (studentAnswer === this.answers) {
-                return true;
+
+        } else { // if the student's answer contains double quotes
+            if (isNoSpaceEqualSign(studentAnswer)) {
+                var answerNoSpace = removeSpace(this.answers);
+                if (answerNoSpace === studentAnswer) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (studentAnswer === this.answers) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
 
@@ -112,12 +156,16 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
         if (studentAnswer.indexOf("(") > -1 && studentAnswer.indexOf(")") > -1) { // checks if the student used parenthesis
             if (studentAnswer === this.answers) {
                 return true;
+            } else {
+                return false;
             }
 
         } else { // no parenthesis
             answerSansPar = this.answers.replace("()", ''); // remove parenthesis
             if (studentAnswer === answerSansPar) {
                 return true;
+            } else {
+                return false;
             }
         }
 
@@ -134,11 +182,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
     // Each question template is an array holding either strings
     // or executable commands stored as strings.
     this.questions = [
-        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
-        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
-        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
-        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."],
-        ["Please indicate strings using double or single quotes. If the answer is a decimal, round the number to the nearest integer."]
+        ["Please indicate strings using double or single quotes."],
+        ["Please indicate strings using double or single quotes."],
+        ["Please indicate strings using double or single quotes."],
+        ["Please indicate strings using double or single quotes."],
+        ["Please indicate strings using double or single quotes."],
     ];
     // the question index is used to rotate through the questions
     this.questionIndex = 0;
