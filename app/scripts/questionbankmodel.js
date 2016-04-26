@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 21, 2016
+ * April 25, 2016
  * questionbankmodel.js
  */
 
@@ -73,12 +73,55 @@ QuestionBankModel.prototype.masteryAchieved = function() {
 QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
     if (studentAnswer === "") {
         return false;
-    } else if (studentAnswer..match(/^[0-9]+$/) != null) {
+    } else if (studentAnswer.match(/^[0-9]+$/) != null) { // distance from origin question
         if (studentAnswer === this.answers.toString()) {
             return true;
         }
-    } else if () {
+    } else if (studentAnswer.indexOf("dark") > -1) { // darken question answer: dark (color)
+        // checks if the answer is in double or single quotes
+        if ((/^'.*'$/.test(studentAnswer)) || (/^".*"$/.test(studentAnswer)) {
+            // if the student uses single quotes
+            if (studentAnswer.indexOf("'") == -1 ) {
+                var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
+                if (studentAnswerSanQuote === this.answers) {
+                    return true;
+                }
+             // if the student uses double quotes
+            } else {
+                var studentAnswerSanQuote = studentAnswer.replace(/["']+/g, '');
+                if (studentAnswerSanQuote === this.answers) {
+                    return true;
+                }
+            }
+        }
 
+    } else if ((studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('color') > -1))  { // color question
+        if (studentAnswer.indexOf("'")) {
+            var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
+            if (studentAnswerSanQuote === this.answers) {
+                return true;
+            }
+        } else {
+            var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
+            if (studentAnswerSanQuote === this.answers) {
+                return true;
+            }
+        }
+
+    } else if ((studentAnswer.indexOf('p')) && (studentAnswer.indexOf('darken') > -1)) { // other darken question answer: p.darken() or p.darken
+        if (studentAnswer.indexOf("()") > -1) { // checks if the student used parenthesis
+            if (studentAnswer === this.answers) {
+                return true;
+            }
+
+        } else { // no parenthesis
+           if (studentAnswer === this.answers) {
+                return true;
+            }
+        }
+
+    } else {
+        return false;
     }
 }
 
