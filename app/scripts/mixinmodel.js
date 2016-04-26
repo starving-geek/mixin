@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * April 24, 2016
+ * April 26, 2016
  */
 var randNum;
 var number;
@@ -38,7 +38,7 @@ function getQuestionType() {
     } else if (num == 3) {
         return "dark color";
     } else {
-        return "distance";
+        return "addUp";
     }
 }
 
@@ -52,10 +52,10 @@ function getModuleString() {
     var module = "module Color\n";
     module += "  attr_accessor :color\n";
     module += "  def darken\n";
-    module += '    self.color = \"dark\" + self.color\n';
+    module += '    self.color = \"dark\ " + self.color\n';
     module += "  end\n";
-    module += "  def distFromOrigin\n";
-    module += "    Math.sqrt(x * x + y * y)\n";
+    module += "  def addUp\n";
+    module += "    x + y\n";
     module += "  end\n";
     module += "end\n";
 
@@ -82,8 +82,8 @@ function getDarkenAnswer() {
 function getColorAnswer(color) {
     return 'p.color = "' + color + '"';
 }
-function getDistanceAnswer(x, y) {
-    return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+function getAddUpAnswer(x, y) {
+    return x + y;
 }
 
 function getDarkenEvalAnswer(color) {
@@ -102,24 +102,24 @@ MixinModel.prototype.evalMixinExpression = function() {
 
     if (questionType == "color") {
         var color = getColor();
-        this.mixinExpressionString += "What Ruby command would set the color of p to " + color + "?\n</pre>";
+        this.mixinExpressionString += '</pre> <label id="rubyQuestion"> What Ruby command would set the color of p to ' + color + '?</label>';
         return getColorAnswer(color);
 
     } else if (questionType == "darken") {
-        this.mixinExpressionString += 'What Ruby command would call the \"darken\" function on p?</pre>';
+        this.mixinExpressionString += '</pre> <label id="rubyQuestion"> What Ruby command would call the \"darken\" function on p?</label>';
         return getDarkenAnswer();
 
     } else if (questionType == "dark color") {
         var color = getColor();
-        this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
+
         this.mixinExpressionString += "p.color = '" + color + "'\n";
-        this.mixinExpressionString += "ans = p.darken()</pre>";
+        this.mixinExpressionString += "ans = p.darken()</pre> <label id=\"rubyQuestion\"> What would be assigned to ans after the Ruby code above is executed?</label>";
         return getDarkenEvalAnswer(color);
 
     } else {
-        this.mixinExpressionString += "What would be assigned to ans after the following Ruby code is executed?\n";
-        this.mixinExpressionString += "ans = p.distFromOrigin()</pre>";
-        return getDistanceAnswer(xPoint, yPoint);
+
+        this.mixinExpressionString += "ans = p.addUp()</pre> <label id=\"rubyQuestion\"> What would be assigned to ans after the Ruby code above is executed?</label>";
+        return getAddUpAnswer(xPoint, yPoint);
     }
 }
 

@@ -64,13 +64,9 @@ SimView.prototype.setupControls = function() {
             // give them feedback
             var correctAnswer = simController.simModel.questionBank.answers;
             var feedbackStr = '';
-            debugger;
+            //debugger;
             if (typeof correctAnswer === 'number') {
-                if (correctAnswer % 1 != 0) {
-                    feedbackStr += "That is incorrect. The correct answer is " + Math.round(correctAnswer);
-                } else {
-                    feedbackStr += "That is incorrect. The correct answer is " + correctAnswer;
-                }
+                feedbackStr += "That is incorrect. The correct answer is " + correctAnswer;
 
             } else if (typeof correctAnswer === "string"){ // if correctAnswer is a string
                 if (correctAnswer.indexOf('dark') > -1 && correctAnswer.indexOf('.') == -1) { // dark color answer

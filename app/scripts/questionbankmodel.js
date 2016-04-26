@@ -74,7 +74,7 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
     if (studentAnswer === "") {
         return false;
     } else if (studentAnswer.match(/^[0-9]+$/) != null) { // distance from origin question
-        if (studentAnswer === Math.round(this.answers).toString()) {
+        if (studentAnswer === this.answers.toString()) {
             return true;
         }
     } else if (studentAnswer.indexOf("dark") > -1 && studentAnswer.indexOf('.') == -1) { // darken question answer: dark (color)
