@@ -79,7 +79,7 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
         }
     } else if (studentAnswer.indexOf("dark") > -1) { // darken question answer: dark (color)
         // checks if the answer is in double or single quotes
-        if ((/^'.*'$/.test(studentAnswer)) || (/^".*"$/.test(studentAnswer)) {
+        if ( (/^'.*'$/.test(studentAnswer)) || (/^".*"$/.test(studentAnswer)) ) {
             // if the student uses single quotes
             if (studentAnswer.indexOf("'") == -1 ) {
                 var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
@@ -93,22 +93,22 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
                     return true;
                 }
             }
-        }
 
-    } else if ((studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('color') > -1))  { // color question
+        }
+    } else if ( (studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('color') > -1) )  { // color question
         if (studentAnswer.indexOf("'")) {
             var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
             if (studentAnswerSanQuote === this.answers) {
                 return true;
             }
         } else {
-            var studentAnswerSanQuote = studentAnswer.replace(/['"]+/g, '');
+            var studentAnswerSanQuote = studentAnswer.replace(/["']+/g, '');
             if (studentAnswerSanQuote === this.answers) {
                 return true;
             }
         }
 
-    } else if ((studentAnswer.indexOf('p')) && (studentAnswer.indexOf('darken') > -1)) { // other darken question answer: p.darken() or p.darken
+    } else if ( (studentAnswer.indexOf('p')) && (studentAnswer.indexOf('darken') > -1) ) { // other darken question answer: p.darken() or p.darken
         if (studentAnswer.indexOf("()") > -1) { // checks if the student used parenthesis
             if (studentAnswer === this.answers) {
                 return true;
