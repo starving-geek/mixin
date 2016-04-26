@@ -2,19 +2,40 @@
  * Tyler Deans
  * April 24, 2016
  */
+var randNum;
+var number;
 
 function MixinModel(_simModel) {
     // save a link to the model
     this.simModel = _simModel;
 }
 
+// Returns a random integer between min (included) and max (excluded)
+// Using Math.round() will give you a non-uniform distribution!
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(min, max) {
+    if (randNum == null) {
+       number = Math.floor(Math.random() * (max - min)) + min;
+       randNum = number;
+       return number;
+    } else if (randNum === number) {
+        number = Math.floor(Math.random() * (max - min)) + min;
+        while(randNum === number) {
+            number = Math.floor(Math.random() * (max - min)) + min;
+        }
+        randNum = number;
+        return number;
+    }
+
+}
+
 function getQuestionType() {
-    var randNum = getRandomInt(1, 5); // random number between 1 and 4
-    if (randNum == 1) {
+    var num = getRandomInt(1, 5); // random number between 1 and 4
+    if (num == 1) {
         return "color";
-    } else if (randNum == 2) {
+    } else if (num == 2) {
         return "darken";
-    } else if (randNum == 3) {
+    } else if (num == 3) {
         return "dark color";
     } else {
         return "distance";

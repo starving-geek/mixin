@@ -3,15 +3,16 @@
  * November 12, 2015
  */
 
+
 function QuestionBankView(_simView) {
-  // keep a link to the view
-  this.simView = _simView;
+    // keep a link to the view
+    this.simView = _simView;
 }
 
 
 QuestionBankView.prototype.presentQuestion = function(_question) {
-  // display the new question
-  $( "#lblQuestion" ).text(_question);
+    // display the new question
+    $( "#lblQuestion" ).text(_question);
 }
 
 
@@ -23,21 +24,20 @@ QuestionBankView.prototype.presentQuestion = function(_question) {
  */
 
 QuestionBankView.prototype.drawAnswerHistory = function(_answerHistory) {
-  // clear the answer history display
-  $( ".answerHistory" ).empty();
-  // loop through all the items in the queue
-  for (i = 0; i < _answerHistory.length; i++) {
-    id = 'id = answerBlock' + i;
-    // if we haven't provided an answer yet
-    if (_answerHistory[i] == null) {
-      $( ".answerHistory" ).append( "<div " + id + " class='answerBlock noAnswer'></div>" );
-    // if the answer was right
-    } else if (_answerHistory[i] == true) {
-      $( ".answerHistory" ).append( "<div class='answerBlock rightAnswer'></div>" );
-    // if the answer was wrong
-    } else {
-      $( ".answerHistory" ).append( "<div class='answerBlock wrongAnswer'></div>" );
+    // clear the answer history display
+    $( ".answerHistory" ).empty();
+    // loop through all the items in the queue
+    for (i = 0; i < _answerHistory.length; i++) {
+        id = 'id = answerBlock' + i;
+        // if we haven't provided an answer yet
+        if (_answerHistory[i] == null) {
+            $( ".answerHistory" ).append( "<div " + id + " class='answerBlock noAnswer'></div>" );
+        // if the answer was right
+        } else if (_answerHistory[i] == true) {
+            $( ".answerHistory" ).append( "<div class='answerBlock rightAnswer'></div>" );
+        // if the answer was wrong
+        } else {
+            $( ".answerHistory" ).append( "<div class='answerBlock wrongAnswer'></div>" );
+        }
     }
-  }
 }
-

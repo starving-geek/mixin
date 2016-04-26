@@ -14,34 +14,15 @@
  */
 
 
-var randNum;
+
 function emptyOutArray(myArray) {
     myArray.length = 0;
 }
 /*
  * Tyler Deans
- * April 16, 2016
+ * April 26, 2016
  * added getRandomInt function
  */
-
-// Returns a random integer between min (included) and max (excluded)
-// Using Math.round() will give you a non-uniform distribution!
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-function getRandomInt(min, max) {
-    var number;
-    if (randNum == null) {
-       number = Math.floor(Math.random() * (max - min)) + min;
-       return number;
-    } else if (randNum === number) {
-        number = Math.floor(Math.random() * (max - min)) + min;
-        while(randNum === number) {
-            number = Math.floor(Math.random() * (max - min)) + min;
-        }
-        randNum = number;
-        return number;
-    }
-
-}
 
 
 /*

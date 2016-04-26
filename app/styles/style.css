@@ -55,7 +55,7 @@ body{
 }
 
 .wrongAnswer{
-    background:red;
+    background-color: #ff0000;
 }
 
 pre {

@@ -77,7 +77,7 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
         if (studentAnswer === Math.round(this.answers).toString()) {
             return true;
         }
-    } else if (studentAnswer.indexOf("dark") > -1) { // darken question answer: dark (color)
+    } else if (studentAnswer.indexOf("dark") > -1 && studentAnswer.indexOf('.') == -1) { // darken question answer: dark (color)
         // checks if the answer is in double or single quotes
         if ( (/^'.*'$/.test(studentAnswer)) || (/^".*"$/.test(studentAnswer)) ) {
             // if the student uses single quotes
@@ -108,7 +108,7 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
             }
         }
 
-    } else if ( (studentAnswer.indexOf('p')) && (studentAnswer.indexOf('darken') > -1) ) { // other darken question answer: p.darken() or p.darken
+    } else if ( (studentAnswer.indexOf('p') > -1) && (studentAnswer.indexOf('darken') > -1) ) { // other darken question answer: p.darken() or p.darken
         if (studentAnswer.indexOf("(") > -1 && studentAnswer.indexOf(")") > -1) { // checks if the student used parenthesis
             if (studentAnswer === this.answers) {
                 return true;
